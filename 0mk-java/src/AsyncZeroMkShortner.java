@@ -40,20 +40,13 @@ public class AsyncZeroMkShortner extends ZeroShortner
 		}
 		public void execute()
 		{
-			/*
-			 * Method that will envoke the async task. Output of the operation can be consumed from the 
-			 * onShortCompleted(byte[] data) or onShortLinkCompleted(ZeroLink link) 
-			 */
 			Runner runner = new Runner(0);
 			runner.start();
 		}
 		public void setOnShortningComplete(ShorteningListener listener)
 		{
-			/*
-			 * Sets ShorteningListener that will be envoked when async request is completed
-			 * @params listener - ShorteningListener interface
-			 */
 			mShorteningListener = listener;
+			
 		}
 		
 		
@@ -64,18 +57,10 @@ public class AsyncZeroMkShortner extends ZeroShortner
 			private ZeroLink mDeleteLink;
 			public Runner(int what)
 			{
-				/*
-				 * @params what - operation type. WARNING: This is not finished
-				 */
 				mOperation = what;
 			}
 			public Runner(ZeroLink l)
 			{
-
-				/*
-				 * @params lin - ZeroLink object that will be used for deletion. WARNING: This is not finished, 
-				 * as of deletion of the links in this library.
-				 */
 				mDeleteLink = l;
 			}
 		@Override

@@ -16,11 +16,6 @@ public class ZeroShortner{
 
 	public ZeroShortner(String apikey, String user)
 	{
-		/*
-		 * @params apiKey - your 0.mk API key 
-		 * @params user - your 0.mk username
-		 * 
-		 */
 		mApiKey = apikey;
 		mUser = user;
 	}
@@ -29,36 +24,19 @@ public class ZeroShortner{
 	}
 	public int getOutputFormat()
 	{
-		/*
-		 * @return mOutput - the output format you have specified previously.
-		 */
 		return mOutput;
 	}
 	public String getApiKey()
 	{
-		/*
-		 * @return mApiKey - the API key. If you have used parameterless constructor null value will be returned.
-		 */
 		return mApiKey;
 	}
 	
 	public void setOnErrorListener(ErrorListener listener)
 	{
-		/*
-		 * Error listener that will be envoked when the 0.mk returns greskaId and greskaMsg in the data. 
-		 * Visit Constants for detailed information about errors.
-		 * @params listener - ErrorListener interface
-		 */
 		mErrorListener = listener;
 	}
 	public void deleteLink(ZeroLink link)//not finished, needs more working
 	{
-		/*
-		 * Deletes a Zero link object from 0.mk
-		 * 
-		 * @params link  - ZeroLink object on which deletion will be performed
-		 * @throws NullPointerException - if Link object is null
-		 */
 		URL url;
 		try {
 			url = new URL(link.getDeleteLink());
@@ -76,13 +54,6 @@ public class ZeroShortner{
 	}
 	public ZeroLink previewLink(int format, String shortLink)
 	{
-		/*
-		 * Method that will let you preview data associated with short link already baked with 0.mk
-		 * 
-		 * @params format - Format of the output from 0.mk API @see Constants
-		 * @throws IllegalArgumentException - if the shortLink argument is null
-		 * 
-		 */
 		if(shortLink==null)
 			throw new IllegalArgumentException("link argumentot ne smee da bide null");
 		URL url;
@@ -105,13 +76,6 @@ public class ZeroShortner{
 	}
 	public byte[] shortLink(String link, int output, String nastavka)
 	{
-		/*
-		 * Method that is used to short your links using 0.mk API. This method can be used several times with the same instance and different parameters.
-		 * @params link - Long link that you want to process.
-		 * @params output - Output format of the response that you want be returned from the API.
-		 * @params nastavka - The custom appendix of the end of the link. e.g http://0.mk/java 
-		 * @throws IllegalArgumentException - if link parameter is null.
-		 */
 		mOutput = output;
 		if(link==null)
 			throw new IllegalArgumentException("link argumentot ne smee da bide null");
@@ -139,8 +103,7 @@ public class ZeroShortner{
 	{
 	
 		/*
-		 * Used to create image representation of the QR code.
-		 * @return - InputStream that later can be manipulated.
+		 * Used to create image representation of the QR code;
 		 */
 		if(mData==null)return null;
 		return new ByteArrayInputStream(mData);
@@ -149,16 +112,11 @@ public class ZeroShortner{
 
 	public ZeroLink getLinkObject()
 	{
-		/*
-		 * This methods returns ZeroLink object with all data associated with, from the format you have specified (JSON, XML, PLAINTEXT).
-		 * For QR code output use getBytesForQr() instead, otherwise null will be returned.
-		 */
 		return getLinkObjectInternal(mData, mOutput);
 		
 	}
 	private ZeroLink getLinkObjectInternal(byte[] data, int outputformat)
 	{
-		
 		ZeroLink link;
 		switch(outputformat)
 		{
@@ -208,7 +166,6 @@ public class ZeroShortner{
 	}
 	private String buildMyUrl(String apilink, String link, int out, String nastavka)
 	{
-		
 		StringBuffer urlBuilder = new StringBuffer();
 		urlBuilder.append(apilink);
 		urlBuilder.append("format=").append(out==Constants.JSON_FORMAT? "json" : 
