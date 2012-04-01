@@ -176,7 +176,7 @@ public class ZeroShortner{
 		case Constants.QR_FORMAT:
 		return null;
 		default:
-			link = Utils.parseJSON(getStringResponse());
+			link = Utils.parseJSON(getStringResponseInternal(data));
 		}
 		if(link.getErrorId()!= -1 && mErrorListener!=null)
 			mErrorListener.onError(link.getErrorId(), link.getErrorMsg());
