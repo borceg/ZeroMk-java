@@ -170,7 +170,6 @@ public class ZeroShortner{
 			link.setShortLinkUrl(getStringResponseInternal(data));
 			break;
 		case Constants.XML_FORMAT:
-			System.out.println("XML FORMAT RESPONSE STRING: " + getStringResponseInternal(data));
 			link= Utils.parseXML(data);
 			break;
 		case Constants.QR_FORMAT:
